@@ -79,7 +79,9 @@ export default {
       for (let i in this.list) {
         this.list[i].status === 1 ? count += 1 : count += 0
       }
-      this.count = count
+      // 不要再计算属性中直接修改data里卖弄的数据，否则eslint会报vue/no-side-effects-in-computed-properties的错
+      // 解决办法：非要改可以写在一个函数里，然后在计算属性里调用该函数。
+      this.updateCount(count)
       if (count === length || length === 0) {
         return true
       } else {
@@ -175,6 +177,9 @@ export default {
           console.log(err)
         })
       return getTodolist
+    },
+    updateCount (count) {
+      this.count = count
     }
   }
 }
