@@ -51,6 +51,8 @@ export default {
        }, (err) => {
            this.$message.error('请求错误！')
            sessionStorage.setItem('demo-token',null); // 将token清空
+           /* eslint-disable no-console */
+           console.log(err)
        })
    }
  }
